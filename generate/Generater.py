@@ -42,7 +42,7 @@ for tp in set1:
         tmp+=f'<div>发布日期：{Date[i].value}</div></div></div></li>\n';
         html+=tmp;
     
-    html+='</ul></body></html>';
+    html+='</ul><div>数据提供：丁子钊，网页制作：段令博</div></body></html>';
     
     with open(f'../_posts/{tp}.html','w') as f:
     	f.write(html);
