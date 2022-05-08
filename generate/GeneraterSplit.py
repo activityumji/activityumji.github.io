@@ -23,7 +23,7 @@ for i in range(1,len(Type)):
         set1.setdefault(Type[i].value,Type[i].value);
 
 for tp in set1:
-    html = f'---\ntitle: {tp}\nindex_img: /src/{tp}.jpg\nbanner_img: /src/{tp}.jpg\n';
+    html = f'---\ntitle: {tp}\ncover: /src/{tp}.jpg\n';
     html += '---\n\n<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta http-equiv="X-UA-Compatible" content="IE=edge">\n     <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>JIers</title>\n<style>@media screen and (min-width:540px){.box{width: 250px;height: 150px;margin-top: 0px;margin-bottom: 0px;float: left; box-shadow:0 0 15px 10px #ffffff inset;}.url{margin-left: 20px;}.item{width: 700px;height: 200px;}.note{font-size: 12pt; font-style: italic; margin-top: 5px;margin-left: 450px;}}@media screen and (max-width:540px) {.box{width: 330px;height: 150px;margin-top: 0px;margin-bottom: 0px; box-shadow:0 0 15px 10px #ffffff inset;}.item{width: 330px;height: 330px;}.note{font-size: 10pt; font-style: italic; display: flex; margin-left: 0px;}}</style>\n</head>\n<body>\n<ul class="list" style="list-style: none; margin-left:-30px;">';
 
     for i in range(1,len(Type)):
