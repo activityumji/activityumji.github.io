@@ -31,17 +31,19 @@ for tp in set1:
             continue;
         tmp='<li class="item">';
         print(Pic[i].value);
-        Res=requests.get(Pic[i].value,headers=headers);
-        with open(f'../src/{i}.jpg','wb') as f:
-            f.write(Res.content);
-        tmp+=f'<div class="box" style="background: url(/src/{i}.jpg) no-repeat; background-size: 100% 100%;"></div>\n';
-        tmp+='<div class="container">\n';
-        tmp+=f'<a href="{Url[i].value}" style="font-size: 15pt;" class="url">{Title[i].value}</a>\n';
-        tmp+=f'<div class="note">\n';
-        tmp+=f'<div>信息来源：{Type[i].value}</div>\n';
-        tmp+=f'<div>发布编号：{Num[i].value}</div>\n';
-        tmp+=f'<div>发布日期：{Date[i].value}</div></div></div></li>\n';
-        html+=tmp;
+        try:
+            Res=requests.get(Pic[i].value,headers=headers);
+            with open(f'../src/{i}.jpg','wb') as f:
+                f.write(Res.content);
+            tmp+=f'<div class="box" style="background: url(/src/{i}.jpg) no-repeat; background-size: 100% 100%;"></div>\n';
+            tmp+='<div class="container">\n';
+            tmp+=f'<a href="{Url[i].value}" style="font-size: 15pt;" class="url">{Title[i].value}</a>\n';
+            tmp+=f'<div class="note">\n';
+            tmp+=f'<div>信息来源：{Type[i].value}</div>\n';
+            tmp+=f'<div>发布编号：{Num[i].value}</div>\n';
+            tmp+=f'<div>发布日期：{Date[i].value}</div></div></div></li>\n';
+            html+=tmp;
+        except Exception as e: print(e);
     
     html+='</ul><div>数据提供：丁子钊，网页制作：段令博</div></body></html>';
     
