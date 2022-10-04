@@ -3174,7 +3174,6 @@ h1.page-title + .tag-cloud-list {
   content: '';
 }
 #page-header.full_page {
-  /* HACK: this was 100vh */
   height: 400px;
   background-attachment: fixed;
 }

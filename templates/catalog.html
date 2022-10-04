@@ -1,0 +1,164 @@
+{# Variables:
+	image, path, updated_date -- see common.html
+	updated_datetime -- datetime strings
+	updated_iso_datetime -- ISO-format datetime strings
+	articles -- list of dicts with following keys:
+		aid -- ID of article in DB
+		url
+		title
+		cover -- cover image
+		acct -- wechat author account
+		date -- date string
+#}
+<style>
+	@media screen and (min-width: 540px) {
+		.box {
+			width: 250px;
+			height: 150px;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			float: left;
+			box-shadow:0 0 15px 10px #ffffff inset;
+		}
+		.item {
+			width: 100%;
+			height: 200px;
+		}
+		.note {
+			font-size: 12pt;
+			font-style: italic;
+			margin-top: 5px;
+			margin-left: 450px;
+		}
+	}
+	@media screen and (max-width: 540px) {
+		.box {
+			width: 330px;
+			height: 150px;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			box-shadow:0 0 15px 10px #ffffff inset;
+		}
+		.item {
+			width: 330px;
+			height: 330px;
+		}
+		.note {
+			font-size: 10pt;
+			font-style: italic;
+			margin-left: 0px;
+		}
+	}
+</style>
+<div class="post" id="body-wrap">
+	<header class="post-bg" id="page-header" style="background-image: url('{{ image }}')">
+		<nav id="nav">
+			<span id="blog_name"><a id="site-name" href="/">UM-SJTU JI Activity</a></span>
+			<div id="menus">
+				<div id="search-button">
+					<a class="site-page social-icon search">
+						<i class="fas fa-search fa-fw"></i><span> 搜索</span>
+					</a>
+				</div>
+				<div class="menus_items">
+					<div class="menus_item">
+						<a class="site-page" href="/">
+							<i class="fa-fw fas fa-home"></i><span> 首页</span>
+						</a>
+					</div>
+					<div class="menus_item">
+						<a class="site-page" href="/link/">
+							<i class="fa-fw fas fa-link"></i><span> 友链</span>
+						</a>
+					</div>
+				</div>
+				<div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div>
+			</div>
+		</nav>
+		<div id="post-info">
+			<h1 class="post-title">{{ title }}</h1>
+			<div id="post-meta">
+				<div class="meta-firstline">
+					<span class="post-meta-date">
+						<i class="far fa-calendar-alt fa-fw post-meta-icon"></i>
+						<span class="post-meta-label">发表于</span>
+						<span class="post-meta-separator">|</span>
+						<i class="fas fa-history fa-fw post-meta-icon"></i>
+						<span class="post-meta-label">更新于</span>
+						<time class="post-meta-date-updated" datetime="{{ updated_iso_datetime }}"
+							title="更新于 {{ updated_datetime }}">{{ updated_date }}</time>
+					</span>
+				</div>
+				<div class="meta-secondline">
+					<span class="post-meta-separator">|</span>
+					<span class="post-meta-pv-cv" id="" data-flag-title="近期活动汇总">
+						<i class="far fa-eye fa-fw post-meta-icon"></i>
+						<span class="post-meta-label">阅读量:</span>
+						<span id="busuanzi_value_page_pv"></span>
+					</span>
+				</div>
+			</div>
+		</div>
+	</header>
+	<main class="layout hide-aside" id="content-inner">
+		<div id="post">
+			<article class="post-content" id="article-container">
+				<ul class="list" style="list-style: none; margin-left:-30px;">
+					{% for article in articles %}
+						<li class="item">
+							<div class="box" style="background: url({{ article.cover }}) no-repeat; background-size: 100% 100%;"></div>
+							<div class="container">
+								<a rel="noopener" href="{{ article.url }}" style="font-size: 15pt;" class="url">
+									{{ article.title }}
+								</a>
+								<div class="note">
+									<div>信息来源：{{ article.acct }}</div>
+									<div>发布编号：{{ article.aid }}</div>
+									<div>发布日期：{{ article.date }}</div>
+								</div>
+							</div>
+						</li>
+					{% endfor %}
+				</ul>
+				<div>数据提供：丁子钊，网页制作：段令博</div>
+			</article>
+			<div class="post-copyright">
+				<div class="post-copyright__author">
+					<span class="post-copyright-meta">文章作者: </span>
+					<span class="post-copyright-info">
+						<a href="https://activityumji.github.io">UM-SJTU JI Student Activity</a>
+					</span>
+				</div>
+				<div class="post-copyright__type">
+					<span class="post-copyright-meta">文章链接: </span>
+					<span class="post-copyright-info">
+						<a href="https://activityumji.github.io{{ path }}">
+							https://activityumji.github.io{{ path }}
+						</a>
+					</span>
+				</div>
+				<div class="post-copyright__notice">
+					<span class="post-copyright-meta">版权声明: </span>
+					<span class="post-copyright-info">
+						本博客所有文章除特别声明外，均采用
+						<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a>
+						许可协议。转载请注明来自
+						<a href="https://activityumji.github.io" target="_blank">UM-SJTU JI Activity</a>！
+					</span>
+				</div>
+			</div>
+			<div class="tag_share">
+				<div class="post-meta__tag-list"></div>
+				<div class="post_share">
+					<div class="social-share" data-image="{{ image }}" data-sites="facebook,twitter,wechat,weibo,qq"></div>
+					<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"
+						media="print" onload="this.media='all'">
+					<script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script>
+				</div>
+			</div>
+		</div>
+	</main>
+	<footer id="footer">
+		<div id="footer-wrap"></div>
+	</footer>
+</div>
