@@ -3,7 +3,7 @@
 	updated_datetime -- datetime strings
 	updated_iso_datetime -- ISO-format datetime strings
 	articles -- list of dicts with following keys:
-		id -- numerical ID of article in DB
+		aid -- ID of article in DB
 		url
 		title
 		cover -- cover image
@@ -20,11 +20,8 @@
 			float: left;
 			box-shadow:0 0 15px 10px #ffffff inset;
 		}
-		.url {
-			margin-left: 20px;
-		}
 		.item {
-			width: 700px;
+			width: 100%;
 			height: 200px;
 		}
 		.note {
@@ -49,7 +46,6 @@
 		.note {
 			font-size: 10pt;
 			font-style: italic;
-			display: flex;
 			margin-left: 0px;
 		}
 	}
@@ -117,7 +113,7 @@
 								</a>
 								<div class="note">
 									<div>信息来源：{{ article.acct }}</div>
-									<div>发布编号：{{ article.id }}</div>
+									<div>发布编号：{{ article.aid }}</div>
 									<div>发布日期：{{ article.date }}</div>
 								</div>
 							</div>
