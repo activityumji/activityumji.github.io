@@ -7,7 +7,7 @@ import csv
 from selenium.webdriver.common.by import By
 from selenium import webdriver
 from datetime import date
-from config import WECHAT_ACCOUNTS, DB_PATH, COVER_PATH, USER_AGENT
+from config import WECHAT_ACCOUNTS, DB_PATH, COVER_PATH, USER_AGENT, CHROMEDRIVER_PATH
 
 
 class Spider(object):
@@ -33,7 +33,7 @@ class Spider(object):
         # 可以去 http://chromedriver.chromium.org/downloads 下载你的chrome对应版本
         # TODO: executable_path and chrome_options are deprecated
         self.driver = webdriver.Chrome(
-            executable_path=r"./chromedriver",
+            executable_path=CHROMEDRIVER_PATH,
             chrome_options=options,
         )
         # 设置一个隐性等待 5s

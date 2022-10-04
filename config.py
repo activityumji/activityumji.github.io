@@ -1,5 +1,9 @@
 from pathlib import Path
 
+CHROMEDRIVER_PATH = "./chromedriver"
+# windows users might want
+# CHROMEDRIVER_PATH = "chromedriver.exe"
+
 DB_PATH = "db/db.csv"
 
 WECHAT_ACCOUNTS = [
