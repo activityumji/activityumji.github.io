@@ -1,0 +1,124 @@
+{# Variables:
+	image -- see common.html
+	posts -- list of dicts with following keys:
+		title
+		path -- e.g. /articles/JIers/
+		cover -- cover image
+		date -- date string
+		datetime -- datetime string
+		iso_datetime -- ISO-format datetime string
+#}
+<div class="page" id="body-wrap">
+	<header class="full_page" id="page-header" style="background-image: url('{{ image }}')">
+		<nav id="nav">
+			<span id="blog_name"><a id="site-name" href="/">UM-SJTU JI Activity</a></span>
+			<div id="menus">
+				<div id="search-button">
+					<a class="site-page social-icon search">
+						<i class="fas fa-search fa-fw"></i><span> 搜索</span>
+					</a>
+				</div>
+				<div class="menus_items">
+					<div class="menus_item">
+						<a class="site-page" href="/">
+							<i class="fa-fw fas fa-home"></i><span> 首页</span>
+						</a>
+					</div>
+					<div class="menus_item">
+						<a class="site-page" href="/link/">
+							<i class="fa-fw fas fa-link"></i><span> 友链</span>
+						</a>
+					</div>
+				</div>
+				<div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div>
+			</div>
+		</nav>
+		<div id="site-info">
+			<h1 id="site-title">UM-SJTU JI Activity</h1>
+			<div id="site-subtitle"><span id="subtitle"></span></div>
+		</div>
+		<div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div>
+	</header>
+	<main class="layout hide-aside" id="content-inner">
+
+		<div class="recent-posts" id="recent-posts">
+			<div class="recent-post-item">
+				<div class="post_cover left">
+					<a href="/today.html" title="今日活动">
+						<img class="post_bg" src="/src/Cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'"
+							alt="今日活动">
+					</a>
+				</div>
+				<div class="recent-post-info">
+					<a class="article-title" href="/today.html" title="近期活动汇总">今日活动</a>
+					<div class="article-meta-wrap">
+						<span class="article-meta">
+							<i class="fas fa-thumbtack sticky"></i>
+							<span class="sticky">置顶</span>
+							<span class="article-meta-separator">|</span>
+						</span>
+						<span class="post-meta-date">
+							<i class="far fa-calendar-alt"></i>
+							<span class="article-meta-label">更新于</span>
+							<time class="post-meta-date-updated" datetime="{{ updated_iso_datetime }}"
+								title="更新于 {{ updated_datetime }}">{{ updated_date }}</time>
+						</span>
+					</div>
+					<!-- <div class="content"></div> -->
+				</div>
+			</div>
+
+			<div class="recent-post-item">
+				<div class="post_cover right">
+					<a href="/gallery.html" title="近期活动汇总">
+						<img class="post_bg" src="/src/Cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'"
+							alt="近期活动汇总">
+					</a>
+				</div>
+				<div class="recent-post-info">
+					<a class="article-title" href="/gallery.html" title="近期活动汇总">近期活动汇总</a>
+					<div class="article-meta-wrap">
+						<span class="article-meta">
+							<i class="fas fa-thumbtack sticky"></i>
+							<span class="sticky">置顶</span>
+							<span class="article-meta-separator">|</span>
+						</span>
+						<span class="post-meta-date">
+							<i class="far fa-calendar-alt"></i>
+							<span class="article-meta-label">更新于</span>
+							<time class="post-meta-date-updated" datetime="{{ updated_iso_datetime }}"
+								title="更新于 {{ updated_datetime }}">{{ updated_date }}</time>
+						</span>
+					</div>
+					<!-- <div class="content"></div> -->
+				</div>
+			</div>
+
+			{% for post in posts %}
+				<div class="recent-post-item">
+					<div class="post_cover {% if loop.index is odd %} left {% else %} right {% endif %}">
+						<a href="{{ post.path }}" title="{{ post.title }}">
+							<img class="post_bg" src="{{ post.cover }}" onerror="this.onerror=null;this.src='/img/404.jpg'"
+								alt="{{ post.title }}">
+						</a>
+					</div>
+					<div class="recent-post-info">
+						<a class="article-title" href="{{ post.path }}" title="{{ post.title }}">{{ post.title }}</a>
+						<div class="article-meta-wrap">
+							<span class="post-meta-date">
+								<i class="far fa-calendar-alt"></i>
+								<span class="article-meta-label">更新于</span>
+								<time class="post-meta-date-updated" datetime="{{ post.iso_datetime }}"
+									title="更新于 {{ post.datetime }}">{{ post.date }}</time>
+							</span>
+						</div>
+						<!-- <div class="content"></div> -->
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</main>
+	<footer id="footer">
+		<div id="footer-wrap"></div>
+	</footer>
+</div>

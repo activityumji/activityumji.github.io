@@ -1,0 +1,48 @@
+{# Variables:
+	index -- boolean, True if rendering index page
+	title -- page title
+	path -- e.g. /articles/gallery/
+	image -- cover image for page (stylistic and SEO purposes)
+	updated_date -- also date string
+#}
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>{{ title }} | UM-SJTU JI Student Activity</title>
+	<meta name="author" content="UM-SJTU JI Student Activity">
+	<meta name="copyright" content="UM-SJTU JI Student Activity">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="theme-color" content="#ffffff">
+	{% if index %}
+		<meta property="og:type" content="website">
+	{% else %}
+		<meta property="og:type" content="article">
+	{% endif %}
+	<meta property="og:title" content="{{ title }}">
+	<meta property="og:url" content="https://activityumji.github.io{{ path }}">
+	<meta property="og:site_name" content="UM-SJTU JI Activity">
+	<meta property="og:locale" content="zh_CN">
+	<meta property="og:image" content="{{ image }}">
+	<meta property="article:author" content="UM-SJTU JI Student Activity">
+	{% if not index %}
+		<meta property="article:modified_time" content="{{ updated_iso_datetime }}">
+		<meta property="article:author" content="UM-SJTU JI Student Activity">
+	{% endif %}
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:image" content="{{ image }}">
+	{% include "header-scripts.html" %}
+</head>
+
+<body>
+	{% include "sidebar.html" %}
+	{% if index %}
+		{% include "index.html" %}
+	{% else %}
+		{% include "catalog.html" %}
+	{% endif %}
+	{% include "footer-scripts.html" %}
+</body>
+</html>
