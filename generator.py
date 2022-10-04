@@ -11,16 +11,18 @@ def utc_iso_datetime() -> str:
 class Generator:
     def __init__(self):
         self.jinja = Environment(
-            loader=PackageLoader("generate"), autoescape=select_autoescape()
+            loader=PackageLoader("generator"), autoescape=select_autoescape()
         )
         self.template = self.jinja.get_template("common.html")
         self.articles = []  # list of articles as dicts
         db_file = open(DB_PATH)
         reader = csv.reader(db_file)
         for row in reader:
-            article = dict(zip(["id", "date", "title", "acct", "cover", "url"], row))
+            article = dict(
+                zip(["aid", "timestamp", "date", "title", "acct", "cover", "url"], row)
+            )
             if USE_CACHED_ARTICLE_COVERS:
-                article["cover"] = f"/src/{article['id']}.jpg"
+                article["cover"] = f"/src/{article['aid']}.jpg"
             self.articles.append(article)
         db_file.close()
 
@@ -87,7 +89,7 @@ class Generator:
         html = self.template.render(
             {
                 "index": False,
-                "title": title, # TODO: elide long paragraphs
+                "title": title,
                 "path": path,
                 "image": image,
                 "updated_date": today,
